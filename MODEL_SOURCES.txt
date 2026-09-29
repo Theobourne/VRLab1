@@ -1,7 +1,7 @@
-3D MODEL SOURCES - VR Modeling Lab 1
-========================================
-All models are free glTF (.glb) files with PBR textures, downloaded from the
-Khronos Group glTF Sample Assets repository: https://github.com/KhronosGroup/glTF-Sample-Assets
+Model sources
+
+All models are from the Khronos glTF Sample Assets repository:
+https://github.com/KhronosGroup/glTF-Sample-Assets
 
  1. SheenWoodLeatherSofa
     Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/SheenWoodLeatherSofa
@@ -67,5 +67,3 @@ Khronos Group glTF Sample Assets repository: https://github.com/KhronosGroup/glT
     Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/WaterBottle
     Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/WaterBottle/glTF-Binary/WaterBottle.glb
     License:  CC0-1.0 (Microsoft)
-
-Room, rug and coffee table are built from Godot primitives with procedural (noise) textures - not downloaded.

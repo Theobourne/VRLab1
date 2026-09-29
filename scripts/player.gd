@@ -1,6 +1,4 @@
 extends CharacterBody3D
-## Simple first-person controller.
-## WASD = move, Mouse = look, Space = jump, Shift = run, Esc = free the mouse.
 
 @export var walk_speed := 3.0
 @export var run_speed := 6.0

@@ -1,10 +1,5 @@
 extends SceneTree
-## Generates res://scenes/main.tscn: a textured room, 13 unique props with
-## collision shapes, lighting and a first-person player.
-## Run from the project folder:  godot --headless --script res://tools/build_scene.gd
-## (You don't need to run this again unless you want to regenerate the scene.)
 
-# [file, position, y-rotation (deg), target height (0 = keep original size), collision type]
 const PROPS := [
 	["SheenWoodLeatherSofa",      Vector3( 0.0, 0.0, -3.3),   0.0, 0.0,  "trimesh"],
 	["GlamVelvetSofa",            Vector3(-4.2, 0.0, -0.3),  90.0, 0.0,  "trimesh"],
@@ -14,7 +9,6 @@ const PROPS := [
 	["AntiqueCamera",             Vector3( 3.6, 0.0,  2.6), -135.0, 1.5, "trimesh"],
 	["BoomBox",                   Vector3( 1.9, 0.0, -3.4), -15.0, 0.3,  "convex"],
 	["AnisotropyBarnLamp",        Vector3( 2.2, 2.0, -3.95),  0.0, 0.5,  "convex"],
-	# small items on the coffee table (table top is at y = 0.45)
 	["IridescentDishWithOlives",  Vector3( 0.0, 0.45, -1.25),  0.0, 0.0, "convex"],
 	["DiffuseTransmissionTeacup", Vector3(-0.45, 0.45, -1.35), 0.0, 0.0, "convex"],
 	["GlassVaseFlowers",          Vector3( 0.5, 0.45, -1.0),   0.0, 0.0, "convex"],
@@ -22,8 +16,8 @@ const PROPS := [
 	["WaterBottle",               Vector3(-0.5, 0.45, -0.95),  0.0, 0.0, "convex"],
 ]
 
-const ROOM_W := 10.0   # x
-const ROOM_D := 8.0    # z
+const ROOM_W := 10.0
+const ROOM_D := 8.0
 const WALL_H := 2.8
 
 var root3d: Node3D
@@ -55,7 +49,6 @@ func _add(parent: Node, child: Node) -> void:
 	child.owner = root3d
 
 
-# ---------------------------------------------------------------- props
 func _add_prop(parent: Node3D, file: String, pos: Vector3, rot_deg: float, target_h: float, col: String) -> void:
 	var scene: PackedScene = load("res://models/%s.glb" % file)
 	var model: Node3D = scene.instantiate()
@@ -67,7 +60,6 @@ func _add_prop(parent: Node3D, file: String, pos: Vector3, rot_deg: float, targe
 		box = b if i == 0 else box.merge(b)
 
 	var s := 1.0 if target_h <= 0.0 else target_h / box.size.y
-	# centre the model on x/z and put its bottom on the ground
 	var offset := Vector3(-(box.position.x + box.size.x * 0.5), -box.position.y, -(box.position.z + box.size.z * 0.5)) * s
 
 	var body := StaticBody3D.new()
@@ -82,8 +74,6 @@ func _add_prop(parent: Node3D, file: String, pos: Vector3, rot_deg: float, targe
 	body.add_child(model)
 	model.owner = root3d
 
-	# One collision shape per mesh, with the scale baked into the points
-	# (physics bodies/shapes shouldn't be scaled in Godot 4).
 	var model_xf := Transform3D(Basis.from_scale(Vector3.ONE * s), offset)
 	for i in meshes.size():
 		var mi: MeshInstance3D = meshes[i]
@@ -118,7 +108,6 @@ func _rel_xform(n: Node, stop_at: Node) -> Transform3D:
 	return t
 
 
-# ---------------------------------------------------------------- room
 func _noise_tex(freq: float, col_a: Color, col_b: Color, seamless := true) -> NoiseTexture2D:
 	var noise := FastNoiseLite.new()
 	noise.frequency = freq
@@ -167,7 +156,6 @@ func _add_room() -> void:
 	var room := Node3D.new()
 	room.name = "Room"
 	_add(root3d, room)
-	# wood-like floor: stretched noise
 	var floor_tex := _noise_tex(0.02, Color(0.36, 0.23, 0.13), Color(0.55, 0.37, 0.22))
 	var floor_mat := _material(floor_tex, Vector3(2, 12, 1), 0.6)
 	_box_body(room, "Floor", Vector3(ROOM_W, 0.2, ROOM_D), Vector3(0, -0.1, 0), floor_mat)
@@ -180,7 +168,6 @@ func _add_room() -> void:
 	_box_body(room, "WallLeft",  Vector3(t, WALL_H, ROOM_D), Vector3(-ROOM_W / 2 - t / 2, WALL_H / 2, 0), wall_mat)
 	_box_body(room, "WallRight", Vector3(t, WALL_H, ROOM_D), Vector3( ROOM_W / 2 + t / 2, WALL_H / 2, 0), wall_mat)
 
-	# rug
 	var rug_tex := _noise_tex(0.08, Color(0.45, 0.12, 0.12), Color(0.70, 0.35, 0.20))
 	_box_body(room, "Rug", Vector3(3.2, 0.01, 2.2), Vector3(0, 0.005, -1.3), _material(rug_tex, Vector3(1, 1, 1), 1.0))
 
@@ -197,7 +184,6 @@ func _add_table() -> void:
 			_box_body(table, "Leg", Vector3(0.06, 0.4, 0.06), Vector3(x, 0.2, z), wood)
 
 
-# ---------------------------------------------------------------- lights, sky, player
 func _add_environment() -> void:
 	var sky_mat := ProceduralSkyMaterial.new()
 	var sky := Sky.new()
