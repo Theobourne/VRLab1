@@ -1,0 +1,71 @@
+3D MODEL SOURCES - VR Modeling Lab 1
+========================================
+All models are free glTF (.glb) files with PBR textures, downloaded from the
+Khronos Group glTF Sample Assets repository: https://github.com/KhronosGroup/glTF-Sample-Assets
+
+ 1. SheenWoodLeatherSofa
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/SheenWoodLeatherSofa
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenWoodLeatherSofa/glTF-Binary/SheenWoodLeatherSofa.glb
+    License:  CC-BY-4.0 (Eric Chadwick); CC0-1.0 (Fran Calvente)
+
+ 2. GlamVelvetSofa
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/GlamVelvetSofa
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/GlamVelvetSofa/glTF-Binary/GlamVelvetSofa.glb
+    License:  CC-BY-4.0 (Eric Chadwick)
+
+ 3. SheenChair
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/SheenChair
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenChair/glTF-Binary/SheenChair.glb
+    License:  CC0-1.0 (Eric Chadwick)
+
+ 4. DiffuseTransmissionPlant
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/DiffuseTransmissionPlant
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DiffuseTransmissionPlant/glTF-Binary/DiffuseTransmissionPlant.glb
+    License:  CC-BY-4.0 (Eric Chadwick); CC0-1.0 (Rico Cilliers)
+
+ 5. Lantern
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/Lantern
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Lantern/glTF-Binary/Lantern.glb
+    License:  CC0-1.0 (Frank Galligan); CC0-1.0 (sbtron)
+
+ 6. AntiqueCamera
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/AntiqueCamera
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/AntiqueCamera/glTF-Binary/AntiqueCamera.glb
+    License:  CC0-1.0 (Maximillan Kamps)
+
+ 7. BoomBox
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/BoomBox
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoomBox/glTF-Binary/BoomBox.glb
+    License:  CC0-1.0 (Microsoft)
+
+ 8. AnisotropyBarnLamp
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/AnisotropyBarnLamp
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/AnisotropyBarnLamp/glTF-Binary/AnisotropyBarnLamp.glb
+    License:  CC-BY-4.0 (Eric Chadwick)
+
+ 9. IridescentDishWithOlives
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/IridescentDishWithOlives
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/IridescentDishWithOlives/glTF-Binary/IridescentDishWithOlives.glb
+    License:  CC-BY-4.0 (Eric Chadwick)
+
+10. DiffuseTransmissionTeacup
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/DiffuseTransmissionTeacup
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DiffuseTransmissionTeacup/glTF-Binary/DiffuseTransmissionTeacup.glb
+    License:  CC0-1.0 (Polyhaven.com, and Eric Chadwick)
+
+11. GlassVaseFlowers
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/GlassVaseFlowers
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/GlassVaseFlowers/glTF-Binary/GlassVaseFlowers.glb
+    License:  CC0-1.0 (Eric Chadwick); CC0-1.0 (Rico Cilliers)
+
+12. ToyCar
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/ToyCar
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ToyCar/glTF-Binary/ToyCar.glb
+    License:  CC0-1.0 (Eric Chadwick); CC0-1.0 (Guido Odendahl)
+
+13. WaterBottle
+    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/WaterBottle
+    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/WaterBottle/glTF-Binary/WaterBottle.glb
+    License:  CC0-1.0 (Microsoft)
+
+Room, rug and coffee table are built from Godot primitives with procedural (noise) textures - not downloaded.
