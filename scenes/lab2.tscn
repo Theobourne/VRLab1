@@ -1,0 +1,262 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/main.tscn" id="1_hg7qr"]
+[ext_resource type="Script" path="res://scripts/music_box.gd" id="2_p444m"]
+[ext_resource type="Script" path="res://scripts/task_manager.gd" id="3_dqdud"]
+[ext_resource type="Script" path="res://scripts/task.gd" id="4_e12u3"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="5_glguk"]
+
+[sub_resource type="Gradient" id="Gradient_p7khy"]
+colors = PackedColorArray(0.15, 0.3, 0.6, 1, 0.25, 0.45, 0.8, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5j2xw"]
+frequency = 0.04
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ecix5"]
+width = 256
+height = 256
+noise = SubResource("FastNoiseLite_5j2xw")
+color_ramp = SubResource("Gradient_p7khy")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u5b8r"]
+albedo_texture = SubResource("NoiseTexture2D_ecix5")
+roughness = 0.7
+uv1_scale = Vector3(2, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4u5jo"]
+material = SubResource("StandardMaterial3D_u5b8r")
+size = Vector3(0.6, 0.03, 0.45)
+
+[sub_resource type="BoxMesh" id="BoxMesh_42r3c"]
+material = SubResource("StandardMaterial3D_u5b8r")
+size = Vector3(0.6, 0.35, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s58ql"]
+material = SubResource("StandardMaterial3D_u5b8r")
+size = Vector3(0.6, 0.35, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i2x77"]
+material = SubResource("StandardMaterial3D_u5b8r")
+size = Vector3(0.03, 0.35, 0.45)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pk0qr"]
+material = SubResource("StandardMaterial3D_u5b8r")
+size = Vector3(0.03, 0.35, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6y1d7"]
+size = Vector3(0.6, 0.35, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rkd8"]
+size = Vector3(0.25, 0.12, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxy5n"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.85, 0.3, 0.6)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ljn05"]
+material = SubResource("StandardMaterial3D_bxy5n")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.004
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6cjc"]
+shading_mode = 0
+albedo_color = Color(1, 0.9, 0.6, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4y7cm"]
+material = SubResource("StandardMaterial3D_b6cjc")
+radius = 0.035
+height = 0.07
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ril8"]
+shading_mode = 0
+albedo_color = Color(1, 0.9, 0.6, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_khcif"]
+material = SubResource("StandardMaterial3D_3ril8")
+radius = 0.05
+height = 0.1
+
+[node name="Lab2" type="Node3D" unique_id=107856047]
+
+[node name="Environment" type="Node3D" parent="." unique_id=1983177547 instance=ExtResource("1_hg7qr")]
+
+[node name="ToyBox" type="StaticBody3D" parent="." unique_id=1719618667]
+transform = Transform3D(0.9396926, 0, 0.34202012, 0, 1, 0, -0.34202012, 0, 0.9396926, -3.6, 0, 2.9)
+
+[node name="Bottom" type="MeshInstance3D" parent="ToyBox" unique_id=291937525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, 0)
+mesh = SubResource("BoxMesh_4u5jo")
+
+[node name="Front" type="MeshInstance3D" parent="ToyBox" unique_id=436619478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, 0.21)
+mesh = SubResource("BoxMesh_42r3c")
+
+[node name="Back" type="MeshInstance3D" parent="ToyBox" unique_id=832055763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, -0.21)
+mesh = SubResource("BoxMesh_s58ql")
+
+[node name="Left" type="MeshInstance3D" parent="ToyBox" unique_id=1474939238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.285, 0.175, 0)
+mesh = SubResource("BoxMesh_i2x77")
+
+[node name="Right" type="MeshInstance3D" parent="ToyBox" unique_id=478006947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285, 0.175, 0)
+mesh = SubResource("BoxMesh_pk0qr")
+
+[node name="Collision" type="CollisionShape3D" parent="ToyBox" unique_id=1770521594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, 0)
+shape = SubResource("BoxShape3D_6y1d7")
+
+[node name="Slot" type="Marker3D" parent="ToyBox" unique_id=1509595786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+
+[node name="TableSpot" type="Area3D" parent="." unique_id=408364031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.45, -1.35)
+
+[node name="Collision" type="CollisionShape3D" parent="TableSpot" unique_id=326498215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+shape = SubResource("BoxShape3D_1rkd8")
+
+[node name="Marker" type="MeshInstance3D" parent="TableSpot" unique_id=2052705935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.003, 0)
+visible = false
+mesh = SubResource("CylinderMesh_ljn05")
+
+[node name="ToyCarStart" type="Marker3D" parent="." unique_id=1842159634]
+transform = Transform3D(0.76604444, 0, 0.6427876, 0, 1, 0, -0.6427876, 0, 0.76604444, 1.2, 0, 0.7)
+
+[node name="TeacupStart" type="Marker3D" parent="." unique_id=1263298446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 0, 0.5)
+
+[node name="BottleHome" type="Marker3D" parent="." unique_id=1299402438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.45, -0.95)
+
+[node name="SofaSeat" type="Marker3D" parent="." unique_id=1676608222]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.05, -3)
+
+[node name="Effects" type="Node3D" parent="." unique_id=749897008]
+
+[node name="WallLampLight" type="SpotLight3D" parent="Effects" unique_id=1837256680]
+transform = Transform3D(-1, 8.2150535e-08, -2.9900352e-08, 0, 0.34202015, 0.9396926, 8.742278e-08, 0.9396926, -0.34202015, 2.2, 2.08, -3.9)
+visible = false
+light_color = Color(1, 0.85, 0.6, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_angle = 50.0
+
+[node name="Bulb" type="MeshInstance3D" parent="Effects/WallLampLight" unique_id=2025293762]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_4y7cm")
+
+[node name="LanternLight" type="OmniLight3D" parent="Effects" unique_id=80439956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3, 1.32, -2.97)
+visible = false
+light_color = Color(1, 0.75, 0.4, 1)
+light_energy = 2.0
+omni_range = 3.0
+
+[node name="Bulb" type="MeshInstance3D" parent="Effects/LanternLight" unique_id=1609725]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_khcif")
+
+[node name="Speaker" type="AudioStreamPlayer3D" parent="Effects" unique_id=1077301029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0.15, -3.4)
+script = ExtResource("2_p444m")
+
+[node name="Tasks" type="Node" parent="." unique_id=1299529058]
+script = ExtResource("3_dqdud")
+
+[node name="TurnOnLamp" type="Node" parent="Tasks" unique_id=811416885]
+script = ExtResource("4_e12u3")
+label = "Turn on the wall lamp"
+prompt = "Turn on lamp"
+target = NodePath("../../Environment/Props/AnisotropyBarnLamp")
+effect = NodePath("../../Effects/WallLampLight")
+
+[node name="PickUpToyCar" type="Node" parent="Tasks" unique_id=131199792]
+script = ExtResource("4_e12u3")
+label = "Pick up the toy car from the floor"
+prompt = "Pick up toy car"
+kind = 1
+target = NodePath("../../Environment/Props/ToyCar")
+item = NodePath("../../Environment/Props/ToyCar")
+start_at = NodePath("../../ToyCarStart")
+item_name = "toy car"
+
+[node name="PutCarInBox" type="Node" parent="Tasks" unique_id=1654946110]
+script = ExtResource("4_e12u3")
+label = "Put the toy car in the toy box"
+prompt = "Put toy car in box"
+kind = 2
+target = NodePath("../../ToyBox")
+item = NodePath("../../Environment/Props/ToyCar")
+effect = NodePath("../../ToyBox/Slot")
+item_name = "toy car"
+
+[node name="PickUpBottle" type="Node" parent="Tasks" unique_id=1559906274]
+script = ExtResource("4_e12u3")
+label = "Pick up the water bottle"
+prompt = "Pick up water bottle"
+kind = 1
+target = NodePath("../../Environment/Props/WaterBottle")
+item = NodePath("../../Environment/Props/WaterBottle")
+item_name = "water bottle"
+
+[node name="WaterPlant" type="Node" parent="Tasks" unique_id=1352824513]
+script = ExtResource("4_e12u3")
+label = "Water the plant"
+prompt = "Water the plant"
+kind = 3
+target = NodePath("../../Environment/Props/DiffuseTransmissionPlant")
+item = NodePath("../../Environment/Props/WaterBottle")
+effect = NodePath("../../BottleHome")
+item_name = "water bottle"
+
+[node name="PickUpTeacup" type="Node" parent="Tasks" unique_id=1442528421]
+script = ExtResource("4_e12u3")
+label = "Pick up the teacup from the floor"
+prompt = "Pick up teacup"
+kind = 1
+target = NodePath("../../Environment/Props/DiffuseTransmissionTeacup")
+item = NodePath("../../Environment/Props/DiffuseTransmissionTeacup")
+start_at = NodePath("../../TeacupStart")
+item_name = "teacup"
+
+[node name="PutCupOnTable" type="Node" parent="Tasks" unique_id=81798768]
+script = ExtResource("4_e12u3")
+label = "Put the teacup on the coffee table"
+prompt = "Put teacup here"
+kind = 2
+target = NodePath("../../TableSpot")
+item = NodePath("../../Environment/Props/DiffuseTransmissionTeacup")
+effect = NodePath("../../TableSpot")
+item_name = "teacup"
+
+[node name="PlayMusic" type="Node" parent="Tasks" unique_id=1699271564]
+script = ExtResource("4_e12u3")
+label = "Turn on the boombox"
+prompt = "Turn on boombox"
+kind = 4
+target = NodePath("../../Environment/Props/BoomBox")
+effect = NodePath("../../Effects/Speaker")
+
+[node name="TurnOnLantern" type="Node" parent="Tasks" unique_id=1735931047]
+script = ExtResource("4_e12u3")
+label = "Turn on the street lantern"
+prompt = "Turn on lantern"
+target = NodePath("../../Environment/Props/Lantern")
+effect = NodePath("../../Effects/LanternLight")
+
+[node name="SitDown" type="Node" parent="Tasks" unique_id=823487657]
+script = ExtResource("4_e12u3")
+label = "Sit on the leather sofa"
+prompt = "Sit down"
+kind = 5
+target = NodePath("../../Environment/Props/SheenWoodLeatherSofa")
+effect = NodePath("../../SofaSeat")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=733175907]
+script = ExtResource("5_glguk")

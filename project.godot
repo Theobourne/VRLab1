@@ -14,8 +14,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="VR Lab 1 - Living Room"
-run/main_scene="res://scenes/main.tscn"
+config/name="VR Labs - Living Room"
+run/main_scene="res://scenes/lab2.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [rendering]

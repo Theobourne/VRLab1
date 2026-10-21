@@ -6,7 +6,6 @@ const PROPS := [
 	["SheenChair",                Vector3( 3.0, 0.0, -0.6), -110.0, 0.0, "convex"],
 	["DiffuseTransmissionPlant",  Vector3(-4.3, 0.0, -3.4),   0.0, 0.0,  "convex"],
 	["Lantern",                   Vector3( 4.3, 0.0, -3.4), -90.0, 1.9,  "trimesh"],
-	["AntiqueCamera",             Vector3( 3.6, 0.0,  2.6), -135.0, 1.5, "trimesh"],
 	["BoomBox",                   Vector3( 1.9, 0.0, -3.4), -15.0, 0.3,  "convex"],
 	["AnisotropyBarnLamp",        Vector3( 2.2, 2.0, -3.95),  0.0, 0.5,  "convex"],
 	["IridescentDishWithOlives",  Vector3( 0.0, 0.45, -1.25),  0.0, 0.0, "convex"],
@@ -132,6 +131,38 @@ func _material(tex: Texture2D, uv: Vector3, rough := 0.8) -> StandardMaterial3D:
 	return m
 
 
+func _texture_material(folder: String, tile_m: float, fallback: StandardMaterial3D) -> StandardMaterial3D:
+	var dir := "res://textures/" + folder
+	if not DirAccess.dir_exists_absolute(dir):
+		return fallback
+	var maps := {}
+	for f in DirAccess.get_files_at(dir):
+		var low := f.to_lower()
+		if not (low.ends_with(".jpg") or low.ends_with(".png") or low.ends_with(".exr")):
+			continue
+		if "nor_gl" in low or "normal" in low:
+			maps["normal"] = dir + "/" + f
+		elif "rough" in low:
+			maps["rough"] = dir + "/" + f
+		elif "diff" in low or "col" in low or "albedo" in low or "basecolor" in low:
+			maps["albedo"] = dir + "/" + f
+	if not maps.has("albedo"):
+		return fallback
+	var m := StandardMaterial3D.new()
+	m.albedo_texture = load(maps["albedo"])
+	if maps.has("normal"):
+		m.normal_enabled = true
+		m.normal_texture = load(maps["normal"])
+	if maps.has("rough"):
+		m.roughness_texture = load(maps["rough"])
+	m.roughness = 1.0
+	m.uv1_triplanar = true
+	m.uv1_world_triplanar = true
+	m.uv1_scale = Vector3.ONE / tile_m
+	print("  textured ", folder, ": ", maps.keys())
+	return m
+
+
 func _box_body(parent: Node, name: String, size: Vector3, pos: Vector3, mat: Material) -> void:
 	var body := StaticBody3D.new()
 	body.name = name
@@ -157,16 +188,18 @@ func _add_room() -> void:
 	room.name = "Room"
 	_add(root3d, room)
 	var floor_tex := _noise_tex(0.02, Color(0.36, 0.23, 0.13), Color(0.55, 0.37, 0.22))
-	var floor_mat := _material(floor_tex, Vector3(2, 12, 1), 0.6)
+	var floor_mat := _texture_material("floor", 2.0, _material(floor_tex, Vector3(2, 12, 1), 0.6))
 	_box_body(room, "Floor", Vector3(ROOM_W, 0.2, ROOM_D), Vector3(0, -0.1, 0), floor_mat)
 
 	var wall_tex := _noise_tex(0.05, Color(0.80, 0.77, 0.70), Color(0.90, 0.88, 0.82))
-	var wall_mat := _material(wall_tex, Vector3(4, 2, 1), 0.95)
+	var wall_mat := _texture_material("wall", 2.0, _material(wall_tex, Vector3(4, 2, 1), 0.95))
 	var t := 0.2
 	_box_body(room, "WallBack",  Vector3(ROOM_W, WALL_H, t), Vector3(0, WALL_H / 2, -ROOM_D / 2 - t / 2), wall_mat)
 	_box_body(room, "WallFront", Vector3(ROOM_W, WALL_H, t), Vector3(0, WALL_H / 2,  ROOM_D / 2 + t / 2), wall_mat)
 	_box_body(room, "WallLeft",  Vector3(t, WALL_H, ROOM_D), Vector3(-ROOM_W / 2 - t / 2, WALL_H / 2, 0), wall_mat)
 	_box_body(room, "WallRight", Vector3(t, WALL_H, ROOM_D), Vector3( ROOM_W / 2 + t / 2, WALL_H / 2, 0), wall_mat)
+	var ceiling_mat := _material(_noise_tex(0.05, Color(0.86, 0.84, 0.80), Color(0.93, 0.92, 0.89)), Vector3(4, 4, 1), 0.95)
+	_box_body(room, "Ceiling", Vector3(ROOM_W + 2 * t, t, ROOM_D + 2 * t), Vector3(0, WALL_H + t / 2, 0), ceiling_mat)
 
 	var rug_tex := _noise_tex(0.08, Color(0.45, 0.12, 0.12), Color(0.70, 0.35, 0.20))
 	_box_body(room, "Rug", Vector3(3.2, 0.01, 2.2), Vector3(0, 0.005, -1.3), _material(rug_tex, Vector3(1, 1, 1), 1.0))
@@ -195,28 +228,36 @@ func _add_environment() -> void:
 	env.reflected_light_source = Environment.REFLECTION_SOURCE_SKY
 	env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	env.ssao_enabled = true
-	env.ambient_light_energy = 0.6
-	env.tonemap_exposure = 0.85
+	env.ambient_light_energy = 0.1
+	env.tonemap_exposure = 1.0
 	var we := WorldEnvironment.new()
 	we.name = "WorldEnvironment"
 	we.environment = env
 	_add(root3d, we)
 
-	var sun := DirectionalLight3D.new()
-	sun.name = "Sun"
-	sun.rotation_degrees = Vector3(-55, 35, 0)
-	sun.shadow_enabled = true
-	sun.light_energy = 0.6
-	_add(root3d, sun)
-
 	var lamp := OmniLight3D.new()
-	lamp.name = "RoomLight"
-	lamp.position = Vector3(0, 2.4, -0.5)
-	lamp.omni_range = 8.0
-	lamp.light_energy = 0.5
+	lamp.name = "CeilingLight"
+	lamp.position = Vector3(0, WALL_H - 0.25, -0.5)
+	lamp.omni_range = 9.0
+	lamp.light_energy = 0.7
 	lamp.light_color = Color(1.0, 0.9, 0.75)
 	lamp.shadow_enabled = true
 	_add(root3d, lamp)
+
+	var fixture := MeshInstance3D.new()
+	fixture.name = "Fixture"
+	var cyl := CylinderMesh.new()
+	cyl.top_radius = 0.22
+	cyl.bottom_radius = 0.18
+	cyl.height = 0.06
+	var glow := StandardMaterial3D.new()
+	glow.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	glow.albedo_color = Color(1.0, 0.93, 0.8)
+	cyl.material = glow
+	fixture.mesh = cyl
+	fixture.position = Vector3(0, WALL_H - 0.03, -0.5)
+	fixture.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_add(root3d, fixture)
 
 
 func _add_player() -> void:
