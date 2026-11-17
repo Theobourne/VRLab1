@@ -4,64 +4,64 @@ All models are from the Khronos glTF Sample Assets repository:
 https://github.com/KhronosGroup/glTF-Sample-Assets
 
  1. SheenWoodLeatherSofa
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/SheenWoodLeatherSofa
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenWoodLeatherSofa/glTF-Binary/SheenWoodLeatherSofa.glb
-    License:  CC-BY-4.0 (Eric Chadwick); CC0-1.0 (Fran Calvente)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/SheenWoodLeatherSofa
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenWoodLeatherSofa/glTF-Binary/SheenWoodLeatherSofa.glb
+	License:  CC-BY-4.0 (Eric Chadwick); CC0-1.0 (Fran Calvente)
 
  2. GlamVelvetSofa
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/GlamVelvetSofa
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/GlamVelvetSofa/glTF-Binary/GlamVelvetSofa.glb
-    License:  CC-BY-4.0 (Eric Chadwick)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/GlamVelvetSofa
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/GlamVelvetSofa/glTF-Binary/GlamVelvetSofa.glb
+	License:  CC-BY-4.0 (Eric Chadwick)
 
  3. SheenChair
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/SheenChair
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenChair/glTF-Binary/SheenChair.glb
-    License:  CC0-1.0 (Eric Chadwick)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/SheenChair
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/SheenChair/glTF-Binary/SheenChair.glb
+	License:  CC0-1.0 (Eric Chadwick)
 
  4. DiffuseTransmissionPlant
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/DiffuseTransmissionPlant
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DiffuseTransmissionPlant/glTF-Binary/DiffuseTransmissionPlant.glb
-    License:  CC-BY-4.0 (Eric Chadwick); CC0-1.0 (Rico Cilliers)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/DiffuseTransmissionPlant
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DiffuseTransmissionPlant/glTF-Binary/DiffuseTransmissionPlant.glb
+	License:  CC-BY-4.0 (Eric Chadwick); CC0-1.0 (Rico Cilliers)
 
  5. Lantern
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/Lantern
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Lantern/glTF-Binary/Lantern.glb
-    License:  CC0-1.0 (Frank Galligan); CC0-1.0 (sbtron)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/Lantern
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/Lantern/glTF-Binary/Lantern.glb
+	License:  CC0-1.0 (Frank Galligan); CC0-1.0 (sbtron)
 
  6. BoomBox
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/BoomBox
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoomBox/glTF-Binary/BoomBox.glb
-    License:  CC0-1.0 (Microsoft)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/BoomBox
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/BoomBox/glTF-Binary/BoomBox.glb
+	License:  CC0-1.0 (Microsoft)
 
  7. AnisotropyBarnLamp
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/AnisotropyBarnLamp
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/AnisotropyBarnLamp/glTF-Binary/AnisotropyBarnLamp.glb
-    License:  CC-BY-4.0 (Eric Chadwick)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/AnisotropyBarnLamp
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/AnisotropyBarnLamp/glTF-Binary/AnisotropyBarnLamp.glb
+	License:  CC-BY-4.0 (Eric Chadwick)
 
  8. IridescentDishWithOlives
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/IridescentDishWithOlives
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/IridescentDishWithOlives/glTF-Binary/IridescentDishWithOlives.glb
-    License:  CC-BY-4.0 (Eric Chadwick)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/IridescentDishWithOlives
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/IridescentDishWithOlives/glTF-Binary/IridescentDishWithOlives.glb
+	License:  CC-BY-4.0 (Eric Chadwick)
 
  9. DiffuseTransmissionTeacup
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/DiffuseTransmissionTeacup
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DiffuseTransmissionTeacup/glTF-Binary/DiffuseTransmissionTeacup.glb
-    License:  CC0-1.0 (Polyhaven.com, and Eric Chadwick)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/DiffuseTransmissionTeacup
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DiffuseTransmissionTeacup/glTF-Binary/DiffuseTransmissionTeacup.glb
+	License:  CC0-1.0 (Polyhaven.com, and Eric Chadwick)
 
 10. GlassVaseFlowers
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/GlassVaseFlowers
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/GlassVaseFlowers/glTF-Binary/GlassVaseFlowers.glb
-    License:  CC0-1.0 (Eric Chadwick); CC0-1.0 (Rico Cilliers)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/GlassVaseFlowers
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/GlassVaseFlowers/glTF-Binary/GlassVaseFlowers.glb
+	License:  CC0-1.0 (Eric Chadwick); CC0-1.0 (Rico Cilliers)
 
 11. ToyCar
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/ToyCar
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ToyCar/glTF-Binary/ToyCar.glb
-    License:  CC0-1.0 (Eric Chadwick); CC0-1.0 (Guido Odendahl)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/ToyCar
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/ToyCar/glTF-Binary/ToyCar.glb
+	License:  CC0-1.0 (Eric Chadwick); CC0-1.0 (Guido Odendahl)
 
 12. WaterBottle
-    Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/WaterBottle
-    Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/WaterBottle/glTF-Binary/WaterBottle.glb
-    License:  CC0-1.0 (Microsoft)
+	Page:     https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/WaterBottle
+	Download: https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/WaterBottle/glTF-Binary/WaterBottle.glb
+	License:  CC0-1.0 (Microsoft)
 
 Lab 2
 
@@ -72,3 +72,23 @@ Textures (Poly Haven, CC0):
 
 No asset packages. The toy box, table marker, ceiling, lights and music
 were made in Godot (boxes, noise textures and a generated tone).
+
+Lab 3
+
+Sound effects (Kenney, CC0 - license files in sounds/):
+ - Interface Sounds - https://kenney.nl/assets/interface-sounds
+   switch_002, toggle_001, pluck_002 (pluck_001, select_003, confirmation_002, error_004, drop_002 spare)
+ - Impact Sounds - https://kenney.nl/assets/impact-sounds
+   impactWood_medium_000, impactPlate_light_000, impactSoft_medium_000, footstep_wood_000-004
+
+Sounds from Kenney RPG Audio (CC0) - https://kenney.nl/assets/rpg-audio
+   cloth1-4 (pick-ups), dropLeather (error), handleSmallLeather (spare)
+
+Sounds from Pixabay (Pixabay Content License, free to use):
+ - Heavy Rain Outside the Window (DRAGON-STUDIO) - https://pixabay.com/sound-effects/nature-heavy-rain-outside-the-window-515266/
+ - Thunder Strike (Universfield) - https://pixabay.com/sound-effects/nature-thunder-strike-124463/
+ - Water Pouring (freesound_community) - https://pixabay.com/sound-effects/film-special-effects-water-pouring-98795/
+ - Wall clock ticking (AudioPapkin) - https://pixabay.com/sound-effects/film-special-effects-wall-clock-ticking-308746/
+
+No asset packages. Particles (rain, dust, steam, embers, music notes, water drops),
+the window, the wall clock, the lightning and the room hum were made in Godot.

@@ -10,10 +10,14 @@ var hud: Node
 var player: Node
 var glow := StandardMaterial3D.new()
 var glowing: Array[MeshInstance3D] = []
+@export var done_sound: AudioStream
+@export var error_sound: AudioStream
+var ui_sound := AudioStreamPlayer.new()
 
 
 func _ready() -> void:
 	add_to_group("task_manager")
+	add_child(ui_sound)
 	for c in get_children():
 		if c is Task:
 			tasks.append(c)
@@ -85,6 +89,8 @@ func try_interact(p: Node, aimed: Object) -> void:
 		_hint(problem)
 		return
 	t.perform(p)
+	if done_sound:
+		get_tree().create_timer(0.25).timeout.connect(_ui.bind(done_sound, -12.0))
 	finished = done_count() == tasks.size()
 	_refresh()
 	progressed.emit(done_count())
@@ -97,6 +103,14 @@ func notify_hands_changed() -> void:
 func _hint(text: String) -> void:
 	if hud:
 		hud.show_hint(text)
+	if error_sound:
+		_ui(error_sound, -10.0)
+
+
+func _ui(stream: AudioStream, volume_db: float) -> void:
+	ui_sound.stream = stream
+	ui_sound.volume_db = volume_db
+	ui_sound.play()
 
 
 func _refresh() -> void:

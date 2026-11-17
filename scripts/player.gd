@@ -16,6 +16,9 @@ var held: Node3D
 var held_layer := 0
 var aimed: Object
 var sitting := false
+var steps: Array[AudioStream] = []
+var step_player := AudioStreamPlayer.new()
+var step_dist := 0.0
 
 
 func _ready() -> void:
@@ -24,6 +27,12 @@ func _ready() -> void:
 	hand.name = "Hand"
 	hand.position = Vector3(0.3, -0.25, -0.6)
 	camera.add_child(hand)
+	for i in 5:
+		var path := "res://sounds/sfx/footstep_wood_%03d.ogg" % i
+		if ResourceLoader.exists(path):
+			steps.append(load(path))
+	step_player.volume_db = -10.0
+	add_child(step_player)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -71,6 +80,21 @@ func _physics_process(delta: float) -> void:
 	velocity.x = dir.x * speed
 	velocity.z = dir.z * speed
 	move_and_slide()
+	_footsteps(delta, speed)
+
+
+func _footsteps(delta: float, speed: float) -> void:
+	var moving := Vector2(velocity.x, velocity.z).length()
+	if not is_on_floor() or moving < 0.5 or steps.is_empty():
+		step_dist = 0.0
+		return
+	step_dist += moving * delta
+	var stride := 0.85 if speed > walk_speed else 0.6
+	if step_dist >= stride:
+		step_dist = 0.0
+		step_player.stream = steps.pick_random()
+		step_player.pitch_scale = randf_range(0.9, 1.1)
+		step_player.play()
 
 
 func interact() -> void:

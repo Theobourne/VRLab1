@@ -197,12 +197,79 @@ func _add_room() -> void:
 	_box_body(room, "WallBack",  Vector3(ROOM_W, WALL_H, t), Vector3(0, WALL_H / 2, -ROOM_D / 2 - t / 2), wall_mat)
 	_box_body(room, "WallFront", Vector3(ROOM_W, WALL_H, t), Vector3(0, WALL_H / 2,  ROOM_D / 2 + t / 2), wall_mat)
 	_box_body(room, "WallLeft",  Vector3(t, WALL_H, ROOM_D), Vector3(-ROOM_W / 2 - t / 2, WALL_H / 2, 0), wall_mat)
-	_box_body(room, "WallRight", Vector3(t, WALL_H, ROOM_D), Vector3( ROOM_W / 2 + t / 2, WALL_H / 2, 0), wall_mat)
+	_add_right_wall_with_window(room, wall_mat, t)
 	var ceiling_mat := _material(_noise_tex(0.05, Color(0.86, 0.84, 0.80), Color(0.93, 0.92, 0.89)), Vector3(4, 4, 1), 0.95)
 	_box_body(room, "Ceiling", Vector3(ROOM_W + 2 * t, t, ROOM_D + 2 * t), Vector3(0, WALL_H + t / 2, 0), ceiling_mat)
 
 	var rug_tex := _noise_tex(0.08, Color(0.45, 0.12, 0.12), Color(0.70, 0.35, 0.20))
 	_box_body(room, "Rug", Vector3(3.2, 0.01, 2.2), Vector3(0, 0.005, -1.3), _material(rug_tex, Vector3(1, 1, 1), 1.0))
+
+
+const WIN_Z0 := -0.3
+const WIN_Z1 := 1.3
+const WIN_Y0 := 0.9
+const WIN_Y1 := 2.1
+
+
+func _add_right_wall_with_window(room: Node3D, wall_mat: Material, t: float) -> void:
+	var x := ROOM_W / 2 + t / 2
+	var half := ROOM_D / 2
+	var win_w := WIN_Z1 - WIN_Z0
+	var win_zc := (WIN_Z0 + WIN_Z1) / 2
+	_box_body(room, "WallRightA", Vector3(t, WALL_H, WIN_Z0 + half), Vector3(x, WALL_H / 2, (-half + WIN_Z0) / 2), wall_mat)
+	_box_body(room, "WallRightB", Vector3(t, WALL_H, half - WIN_Z1), Vector3(x, WALL_H / 2, (WIN_Z1 + half) / 2), wall_mat)
+	_box_body(room, "WallRightLow", Vector3(t, WIN_Y0, win_w), Vector3(x, WIN_Y0 / 2, win_zc), wall_mat)
+	_box_body(room, "WallRightHigh", Vector3(t, WALL_H - WIN_Y1, win_w), Vector3(x, (WALL_H + WIN_Y1) / 2, win_zc), wall_mat)
+
+	var window := Node3D.new()
+	window.name = "Window"
+	window.position = Vector3(x, (WIN_Y0 + WIN_Y1) / 2, win_zc)
+	_add(room, window)
+	var h := WIN_Y1 - WIN_Y0
+	var frame := _material(_noise_tex(0.03, Color(0.92, 0.9, 0.86), Color(0.98, 0.97, 0.95)), Vector3(1, 1, 1), 0.6)
+	var bar := 0.06
+	_mesh_box(window, "FrameTop", Vector3(t + 0.04, bar, win_w + 2 * bar), Vector3(0, h / 2 + bar / 2, 0), frame)
+	_mesh_box(window, "FrameLeft", Vector3(t + 0.04, h, bar), Vector3(0, 0, -win_w / 2 - bar / 2), frame)
+	_mesh_box(window, "FrameRight", Vector3(t + 0.04, h, bar), Vector3(0, 0, win_w / 2 + bar / 2), frame)
+	_mesh_box(window, "Sill", Vector3(t + 0.16, 0.05, win_w + 0.2), Vector3(-0.06, -h / 2 - 0.025, 0), frame)
+	_mesh_box(window, "MullionV", Vector3(0.04, h, 0.04), Vector3(0, 0, 0), frame)
+	_mesh_box(window, "MullionH", Vector3(0.04, 0.04, win_w), Vector3(0, 0, 0), frame)
+
+	var glass_mat := StandardMaterial3D.new()
+	glass_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	glass_mat.albedo_color = Color(0.75, 0.85, 0.95, 0.12)
+	glass_mat.roughness = 0.05
+	glass_mat.metallic_specular = 1.0
+	_box_body(window, "Glass", Vector3(0.01, h, win_w), Vector3.ZERO, glass_mat)
+	window.get_node("Glass/Mesh").cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+
+	var outside := Node3D.new()
+	outside.name = "Outside"
+	_add(room, outside)
+	var sky := MeshInstance3D.new()
+	sky.name = "NightSky"
+	var quad := QuadMesh.new()
+	quad.size = Vector2(16, 10)
+	var night := StandardMaterial3D.new()
+	night.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	night.albedo_color = Color(0.05, 0.07, 0.1)
+	quad.material = night
+	sky.mesh = quad
+	sky.position = Vector3(x + 2.6, 1.5, win_zc)
+	sky.rotation_degrees.y = -90.0
+	sky.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	_add(outside, sky)
+
+
+func _mesh_box(parent: Node, n: String, size: Vector3, pos: Vector3, mat: Material) -> void:
+	var mi := MeshInstance3D.new()
+	mi.name = n
+	var bm := BoxMesh.new()
+	bm.size = size
+	bm.material = mat
+	mi.mesh = bm
+	mi.position = pos
+	_add(parent, mi)
 
 
 func _add_table() -> void:
